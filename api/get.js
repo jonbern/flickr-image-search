@@ -1,5 +1,4 @@
 const fetch = require('fetch-retry');
-const HttpException = require('./HttpException');
 
 module.exports = function get(url) {
   return fetch(url)
@@ -17,3 +16,8 @@ function parseFlickrJsonResponse(text) {
   let jsonText = text.substring(0, text.length - 1).replace('jsonFlickrApi(', '');
   return JSON.parse(jsonText);
 };
+
+function HttpException(status, statusText) {
+  this.status = status;
+  this.statusText = statusText;
+}
