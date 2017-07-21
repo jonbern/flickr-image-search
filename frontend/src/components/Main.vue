@@ -1,9 +1,12 @@
 <template>
-  <div class="hello">
+  <div class="main">
     <h1>Welcome to the Flickr search engine</h1>
     <input type="text" v-model="searchString" placeholder="Type here please" autofocus />
     <div v-infinite-scroll="getMoreData" infinite-scroll-disabled="busy" infinite-scroll-distance="50">
-      <div v-for="item in items" v-bind:key="item.id">{{item}}</div>
+      <div v-for="item in items" v-bind:key="item.id">
+        <div v-on:click="navigateToImage(item.id)">NAVIGATE TO </div>
+          {{item.id}}
+        </div>
     </div>
   </div>
 </template>
@@ -11,6 +14,7 @@
 <script>
 import axios from 'axios';
 import debounce from 'lodash.debounce';
+import router from 'vue-router';
 
 export default {
   name: 'main',
@@ -48,6 +52,9 @@ export default {
     getMoreData() {
       this.page++;
       this.getData();
+    },
+    navigateToImage(id) {
+      this.$router.push({ name: 'ImageDetails', params: { id } })
     }
   }
 }
