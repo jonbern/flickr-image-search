@@ -115,6 +115,7 @@ export default {
   cursor: pointer;
   opacity: 0.6;
   transition: all 0.3s;
+  background-size: cover;
 }
 
 .image:hover {
