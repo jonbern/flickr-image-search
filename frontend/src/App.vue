@@ -18,10 +18,6 @@ h1, h2 {
   text-align: center;
 }
 
-/* h3 {
-  font-weight: normal;
-} */
-
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -32,6 +28,5 @@ h1, h2 {
   margin: 0 auto;
   display: flex;
   flex-direction: column;
-
 }
 </style>

@@ -81,6 +81,8 @@ export default {
 
 .description {
   margin: 0;
+  max-height: 15em;
+  overflow-y: auto;
 }
 
 .date {

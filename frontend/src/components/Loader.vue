@@ -19,9 +19,13 @@ export default {
 <style scoped>
 .loader {
   position: fixed;
-  color: rgba(0, 105, 255, 0.50);
-  right: 1em;
+  right: 2em;
+  top: 2em;
   font-size: 0.9em;
+  color: rgba(0, 105, 255, 0.50);
+  border: 1px solid rgba(0, 105, 255, 0.50);
+  padding: 0.5em;
+  border-radius: 5px;
 }
 
 </style>

@@ -1,13 +1,13 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import ImageSearch from '@/components/ImageSearch'
-import ImageDetails from '@/components/ImageDetails'
+import Vue from 'vue';
+import Router from 'vue-router';
+import ImageSearch from '@/components/ImageSearch';
+import ImageDetails from '@/components/ImageDetails';
 import TagList from '@/components/TagList';
 import Loader from '@/components/Loader';
-import infiniteScroll from 'vue-infinite-scroll'
+import infiniteScroll from 'vue-infinite-scroll';
 
-Vue.use(Router)
-Vue.use(infiniteScroll)
+Vue.use(Router);
+Vue.use(infiniteScroll);
 
 Vue.component('tag-list', TagList);
 Vue.component('loader', Loader);
@@ -18,7 +18,7 @@ export default new Router({
       path: '/', 
       name: 'ImageSearch', 
       component: ImageSearch ,
-      
+
     },
     { 
       path: '/details/:id', 
@@ -27,4 +27,4 @@ export default new Router({
       props: true 
     }
   ]
-})
+});
