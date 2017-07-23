@@ -40,9 +40,14 @@ export default {
     getData() {
       if (this.searchString) {
         this.isLoading = true;
+        let currentSearchString = this.searchString;
         flickrApi.searchImages(this.searchString, this.page)
           .then(response => {
-            this.items = [...this.items, ...response.data];
+            if (this.searchString === currentSearchString) {
+              this.items = [...this.items, ...response.data];  
+            } else {
+              this.items = [response.data];
+            }
             this.isLoading = false;
           })
           .catch(error => {
