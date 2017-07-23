@@ -1,6 +1,7 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 const get = require('./get');
 const app = express();
 const router = express.Router();
@@ -98,7 +99,7 @@ function getImageDetails(id) {
         id: id._content,
         title: title._content,
         description: description._content,
-        posted: dates.posted,
+        posted: moment.unix(dates.posted).format('DD MMM YYYY'),
         tags: tags.tag.map(tag => tag.raw)
       };
     });
