@@ -17,7 +17,8 @@ export default new Router({
     {
       path: '/', 
       name: 'ImageSearch', 
-      component: ImageSearch 
+      component: ImageSearch ,
+      
     },
     { 
       path: '/details/:id', 

@@ -39,7 +39,7 @@ export default {
       url: ''
     }
   },
-  mounted() {
+  activated() {
     let url = `http://localhost:8088/api/images/${this.id}/details`;
     console.log(url);
     axios.get(url)
@@ -54,6 +54,9 @@ export default {
       .catch(error => {
         console.log(error);
       });
+  },
+  deactivated() {
+    this.url = '';
   }
 }
 </script>
