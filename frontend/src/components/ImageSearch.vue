@@ -88,10 +88,11 @@ export default {
   max-width: 600px;
   margin: 0 auto;
   margin-bottom: 2em;
+  display: flex;
+  flex-direction: column;
 }
 
 .searchField input  {
-  width: 450px;
   outline: 0;
   height: 2.5em;
   padding: 0 0.25em;

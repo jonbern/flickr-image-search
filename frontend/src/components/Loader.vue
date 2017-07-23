@@ -20,7 +20,7 @@ export default {
 .loader {
   position: fixed;
   right: 2em;
-  top: 2em;
+  top: 1em;
   font-size: 0.9em;
   color: rgba(0, 105, 255, 0.50);
   border: 1px solid rgba(0, 105, 255, 0.50);
