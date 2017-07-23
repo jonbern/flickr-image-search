@@ -19,6 +19,7 @@ import router from 'vue-router';
 export default {
   name: 'main',
   data() {
+    console.log('data is invoked')
     return {
       searchString: '',
       items: [],
@@ -61,7 +62,8 @@ export default {
 </script>
 
 <style scoped>
-h1, h2 {
+/* h1, h2 {
   font-weight: normal;
-}
+  text-align: center;
+} */
 </style>
