@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    links:
+      - frontend
+      - api
+    ports:
+      - "80:80"
+    restart: always
+
+  frontend:
+    container_name: frontend
+    build: ./frontend
+    restart: always
+
+  api:
+    container_name: api
+    build: ./api
+    restart: always
+    environment:
+      - API_KEY=b09fb8d8f7679bc3c876a5de2cb3f35c

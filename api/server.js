@@ -7,7 +7,7 @@ const app = express();
 const router = express.Router();
 
 const port = process.env.PORT || 8088;
-const API_KEY = process.env.API_KEY || 'b09fb8d8f7679bc3c876a5de2cb3f35c';
+const API_KEY = process.env.API_KEY;
 
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());

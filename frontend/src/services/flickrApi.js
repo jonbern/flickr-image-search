@@ -1,7 +1,7 @@
 'use strict';
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8088/api';
+const baseUrl = 'http://localhost/api';
 
 export default {
   searchImages(searchString, page) {
