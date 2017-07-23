@@ -31,7 +31,7 @@ router.route('/images')
       return res.json([]);
     }
 
-    let url = getFlickrUrl('method=flickr.photos.search', `text=${search}`, 'per_page=25', `page=${page}`);
+    let url = getFlickrUrl('method=flickr.photos.search', `text=${search}`, 'per_page=16', `page=${page}`);
 
     return get(url)
       .then(json => json.photos)
