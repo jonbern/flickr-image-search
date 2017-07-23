@@ -39,7 +39,15 @@ router.route('/images')
           return [];
         }
 
-        let promises = photos.map(photo => getImageUrlData(photo));
+        let promises = photos.map(photo => {
+          return getImageUrl(photo.id).then(url => {
+            return {
+              id: photo.id,
+              title: photo.title,
+              url: url
+            }
+          })
+        });
         return Promise.all(promises);
       })
       .then(result => {
@@ -48,7 +56,7 @@ router.route('/images')
       .catch(err => respondWithError(res, err));
   });
 
-function getImageUrlData({id, title}) {
+function getImageUrl(id) {
   let url = getFlickrUrl('method=flickr.photos.getSizes', `photo_id=${id}`);
   return get(url)
     .then(json => {
@@ -64,11 +72,7 @@ function getImageUrlData({id, title}) {
         }
       }
 
-      return {
-        id,
-        title,
-        url: medium || original
-      }
+      return  medium || original;
     });
 }
 
@@ -76,21 +80,29 @@ router.route('/images/:id/details/')
   .get((req, res) => {
     let { id } = req.params;
     
-    let url = getFlickrUrl('method=flickr.photos.getInfo', `photo_id=${id}`);
-    
-    return get(url)
-      .then(result => result.photo)
-      .then(({id, title, description, dates, tags}) => {
-        res.json({
-          id,
-          title,
-          description,
-          posted: dates.posted,
-          tags: tags.tag.map(tag => tag.raw)
-        });
+    Promise.all([getImageDetails(id), getImageUrl(id)])
+      .then(([imageDetails, imageUrl]) => {
+        imageDetails.url = imageUrl;
+        res.json(imageDetails);
       })
       .catch(err => respondWithError(res, err));
   });
+
+function getImageDetails(id) {
+  let url = getFlickrUrl('method=flickr.photos.getInfo', `photo_id=${id}`);
+
+  return get(url)
+    .then(result => {
+      let { id, title, description, dates, tags } = result.photo;
+      return {
+        id: id._content,
+        title: title._content,
+        description: description._content,
+        posted: dates.posted,
+        tags: tags.tag.map(tag => tag.raw)
+      };
+    });
+}
 
 function getFlickrUrl (...args) {
   let url = `https://api.flickr.com/services/rest/?api_key=${API_KEY}&format=json`;
@@ -107,6 +119,7 @@ function respondWithError(res, err) {
   } else {
     res.status(500).send(err);
   }
+  console.log(err);
 }
 
 app.use('/api', router);
