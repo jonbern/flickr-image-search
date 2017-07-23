@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import flickrApi from '@/services/flickrApi';
 import debounce from 'lodash.debounce';
 import router from 'vue-router';
 
@@ -40,8 +40,7 @@ export default {
     getData() {
       if (this.searchString) {
         this.isLoading = true;
-        let url = `http://localhost:8088/api/images?search=${this.searchString}&page=${this.page}`;
-        axios.get(url)
+        flickrApi.searchImages(this.searchString, this.page)
           .then(response => {
             this.items = [...this.items, ...response.data];
             this.isLoading = false;

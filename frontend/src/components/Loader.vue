@@ -24,7 +24,7 @@ export default {
   font-size: 0.9em;
   color: rgba(0, 105, 255, 0.50);
   border: 1px solid rgba(0, 105, 255, 0.50);
-  padding: 0.5em;
+  padding: 0.4em;
   border-radius: 5px;
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "flickr-frontend",
   "version": "1.0.0",
-  "description": "A Vue.js project",
+  "description": "Flickr frontend",
   "author": "Jon K. Bernhardsen <jonkristian@outlook.com>",
   "private": true,
   "scripts": {

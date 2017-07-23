@@ -20,7 +20,7 @@
 </template>
 
 <script>
-import axios from 'axios';
+import flickrApi from '@/services/flickrApi';
 
 export default {
   name: 'imageDetails',
@@ -40,9 +40,7 @@ export default {
     }
   },
   activated() {
-    let url = `http://localhost:8088/api/images/${this.id}/details`;
-    console.log(url);
-    axios.get(url)
+    flickrApi.getImageDetails(this.id)
       .then(response => {
         let { title, description, posted, tags, url } = response.data;
         this.title = title;
