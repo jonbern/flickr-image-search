@@ -29,7 +29,7 @@ export default {
   padding: 0.25em .5em;
   margin-right: .5em;
   margin-bottom: .5em;
-  border: 1px solid #CCC;
+  border: 1px solid rgba(0, 105, 255, 0.50);
   border-radius: 4px;
   font-size: .75em;
 }

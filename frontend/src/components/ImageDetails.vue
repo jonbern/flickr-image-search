@@ -68,7 +68,6 @@ export default {
 .metadata {
   width: 18em;
   overflow-x: hidden;
-  /* background-color: red; */
   padding: 0 1em;
 
 }
@@ -87,9 +86,8 @@ export default {
 
 .image {
   width: 100%;
-  
-  background-size: cover;
   height: 500px;
+  background-size: cover;
 }
 
 </style>
