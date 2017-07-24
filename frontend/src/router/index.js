@@ -8,7 +8,6 @@ import infiniteScroll from 'vue-infinite-scroll';
 
 Vue.use(Router);
 Vue.use(infiniteScroll);
-
 Vue.component('tag-list', TagList);
 Vue.component('loader', Loader);
 

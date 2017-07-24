@@ -5,7 +5,7 @@
       <input type="text" v-model="searchString" placeholder="Type to search for images" autofocus />
     </div>
     <loader v-bind:show="isLoading" /> 
-    <div class="images" v-infinite-scroll="getMoreData" infinite-scroll-disabled="busy" infinite-scroll-distance="50">
+    <div class="images" v-infinite-scroll="getMoreData" infinite-scroll-disabled="isLoading" infinite-scroll-distance="50">
       <div v-for="item in items" v-bind:key="item.id">
         <div class="image"
              v-bind:style="{ 'background-image': 'url(' + item.url + ')' }" 
@@ -38,23 +38,26 @@ export default {
   },
   methods: {
     getData() {
-      if (this.searchString) {
-        this.isLoading = true;
-        let currentSearchString = this.searchString;
-        flickrApi.searchImages(this.searchString, this.page)
-          .then(response => {
-            if (this.searchString === currentSearchString) {
-              this.items = [...this.items, ...response.data];  
-            } else {
-              this.items = [response.data];
-            }
-            this.isLoading = false;
-          })
-          .catch(error => {
-            console.log(error);
-            this.isLoading = false;
-          });
+      if (!this.searchString) {
+        return;
       }
+      
+      this.isLoading = true;
+      let current = this.searchString;
+      
+      flickrApi.searchImages(this.searchString, this.page)
+        .then(response => {
+          if (this.searchString === current) {
+            this.items = [...this.items, ...response.data];  
+          } else {
+            this.items = [response.data];
+          }
+          this.isLoading = false;
+        })
+        .catch(error => {
+          console.log(error);
+          this.isLoading = false;
+        });
     },
     getDataDebounced: debounce(function() {
       this.page = 1;
@@ -86,6 +89,7 @@ export default {
 
 .searchField {
   max-width: 600px;
+  width: 100%;
   margin: 0 auto;
   margin-bottom: 2em;
   display: flex;

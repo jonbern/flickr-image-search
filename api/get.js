@@ -9,7 +9,7 @@ module.exports = function get(url) {
         throw new HttpException(response.status, response.statusText);
       }
     })
-    .then(text => parseFlickrJsonResponse(text))
+    .then(text => parseFlickrJsonResponse(text));
 }
 
 function parseFlickrJsonResponse(text) {
